@@ -1,5 +1,14 @@
-package com.mirera.merchandise.domain.model;
+package com.mirera.merchandise.domain.Items;
 
+import com.mirera.merchandise.domain.Categories.Categories;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@NoArgsConstructor
 public class Items {
   private Integer itemId;
   private Categories categoryId;
@@ -12,21 +21,4 @@ public class Items {
     this.itemName = itemName;
     this.description = description;
   }
-
-  public Integer getitemId() {
-    return itemId;
-  }
-
-  public Categories getcategoryId() {
-    return categoryId;
-  }
-
-  public String getitemName() {
-    return itemName;
-  }
-
-  public String getdescription() {
-    return description;
-  }
-
 }

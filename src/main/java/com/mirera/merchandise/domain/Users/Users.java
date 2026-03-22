@@ -1,5 +1,12 @@
-package com.mirera.merchandise.domain.model;
+package com.mirera.merchandise.domain.Users;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@NoArgsConstructor
 public class Users {
   private Integer userId;
   private String fullname;
@@ -20,32 +27,11 @@ public class Users {
     this.password = password;
   }
 
-  public Integer getuserId() {
-    return userId;
-  }
-
-  public String getfullname() {
-    return fullname;
-  }
-
-  public String getphone() {
-    return phone;
-  }
-
-  public String getaddress() {
-    return address;
-  }
-
-  public String getemail() {
-    return email;
-  }
-
-  public String getusername() {
-    return username;
-  }
-
-  public String getpassword() {
-    return password;
+  //Register User
+  public Users(String email, String username, String password) {
+    this.email = email;
+    this.username = username;
+    this.password = password;
   }
 
   public void changePassword(String newPassword) {

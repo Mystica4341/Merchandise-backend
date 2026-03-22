@@ -1,5 +1,14 @@
-package com.mirera.merchandise.domain.model;
+package com.mirera.merchandise.domain.Orders;
 
+import com.mirera.merchandise.domain.Users.Users;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@NoArgsConstructor
 public class Orders {
   private Integer orderId;
   private Users userId;
@@ -38,37 +47,5 @@ public class Orders {
     this.status = (status == null) ? OrderStatus.PENDING : OrderStatus.valueOf(status.trim().toUpperCase());
     this.paymentMethod = paymentMethod;
     this.shippingAddress = shippingAddress;
-  }
-
-  public Integer getorderId() {
-    return orderId;
-  }
-
-  public Users getuserId() {
-    return userId;
-  }
-
-  public Integer gettotalAmount() {
-    return totalAmount;
-  }
-
-  public String getorderDate() {
-    return orderDate;
-  }
-
-  public OrderStatus getStatus() {
-    return status;
-  }
-
-  public String getstatus() {
-    return status.toString();
-  }
-
-  public String getpaymentMethod() {
-    return paymentMethod;
-  }
-
-  public String getshippingAddress() {
-    return shippingAddress;
   }
 }

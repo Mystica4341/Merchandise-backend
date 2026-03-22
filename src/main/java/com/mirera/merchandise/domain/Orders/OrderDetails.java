@@ -1,5 +1,14 @@
-package com.mirera.merchandise.domain.model;
+package com.mirera.merchandise.domain.Orders;
 
+import com.mirera.merchandise.domain.Items.Items;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@NoArgsConstructor
 public class OrderDetails {
   private Integer orderDetailsId;
   private Orders orderId;
@@ -15,23 +24,4 @@ public class OrderDetails {
     this.price = price;
   }
 
-  public Integer getOrderDetailsId() {
-    return orderDetailsId;
-  }
-
-  public Orders getOrderId() {
-    return orderId;
-  }
-
-  public Items getItemId() {
-    return itemId;
-  }
-
-  public Integer getQuantity() {
-    return quantity;
-  }
-
-  public Integer getPrice() {
-    return price;
-  }
 }

@@ -1,5 +1,12 @@
-package com.mirera.merchandise.domain.model;
+package com.mirera.merchandise.domain.Items;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@NoArgsConstructor
 public class ItemsDetail {
   private Integer itemDetailsId;
   private Items itemId;
@@ -18,33 +25,5 @@ public class ItemsDetail {
     this.color = color;
     this.stock = stock;
     this.imageUrl = imageUrl;
-  }
-
-  public Integer getitemDetailsId() {
-    return itemDetailsId;
-  }
-
-  public Items getitemId() {
-    return itemId;
-  }
-
-  public Integer getsize() {
-    return size;
-  }
-
-  public double getprice() {
-    return price;
-  }
-
-  public String getcolor() {
-    return color;
-  }
-
-  public Integer getstock() {
-    return stock;
-  }
-
-  public String getimageUrl() {
-    return imageUrl;
   }
 }
