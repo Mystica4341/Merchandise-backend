@@ -53,9 +53,4 @@ public class Users {
       throw new IllegalArgumentException("Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt.");
     }
   }
-
-  public void encryptPassword() {
-    // Testing encrypt sử dụng Base64
-    this.password = java.util.Base64.getEncoder().encodeToString(this.password.getBytes());
-  }
 }

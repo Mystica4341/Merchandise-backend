@@ -1,4 +1,4 @@
-package com.mirera.merchandise.adpater.repository;
+package com.mirera.merchandise.infrastructure.repository;
 
 import com.mirera.merchandise.application.port.outbound.users.UserRepository;
 
