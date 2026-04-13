@@ -1,4 +1,4 @@
-package com.mirera.merchandise.domain.Entity;
+package com.mirera.merchandise.domain.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,7 +27,4 @@ public abstract class BaseEntity {
   @UpdateTimestamp
   @Column(name = "updated_at")
   private LocalDateTime updatedAt;
-
-  @Column(name = "status")
-  private Integer status = 1; // 1 for active, 0 for inactive
 }

@@ -2,7 +2,7 @@ package com.mirera.merchandise.application.service.users;
 
 import com.mirera.merchandise.application.port.inbound.users.UserUseCase;
 import com.mirera.merchandise.application.port.outbound.users.UserRepository;
-import com.mirera.merchandise.domain.Users.Users;
+import com.mirera.merchandise.domain.users.Users;
 
 public class UserService implements UserUseCase {
   private final UserRepository userRepo;
@@ -23,16 +23,16 @@ public class UserService implements UserUseCase {
   }
 
   @Override
-    public void registerUser(String email, String username, String password) {
-        Users user = new Users(email, username, password);
-        if (userRepo.existsByEmail(user.getEmail())) {
-            throw new IllegalArgumentException("Email này đã được đăng ký");
-        }
-        if (userRepo.existsByUsername(user.getUsername())) {
-            throw new IllegalArgumentException("Username này đã được sử dụng");
-        }
-        userRepo.saveUser(user);
+  public void registerUser(String email, String username, String password) {
+    Users user = new Users(email, username, password);
+    if (userRepo.existsByEmail(user.getEmail())) {
+      throw new IllegalArgumentException("Email này đã được đăng ký");
     }
+    if (userRepo.existsByUsername(user.getUsername())) {
+      throw new IllegalArgumentException("Username này đã được sử dụng");
+    }
+    userRepo.saveUser(user);
+  }
 
   @Override
   public void updateUser(Users user) {

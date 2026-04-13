@@ -1,4 +1,4 @@
-package com.mirera.merchandise.domain.Users;
+package com.mirera.merchandise.domain.users;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +27,7 @@ public class Users {
     this.password = password;
   }
 
-  //Register User
+  // Register User
   public Users(String email, String username, String password) {
     this.email = email;
     this.username = username;

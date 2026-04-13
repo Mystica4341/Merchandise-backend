@@ -1,6 +1,6 @@
-package com.mirera.merchandise.domain.Orders;
+package com.mirera.merchandise.domain.orders;
 
-import com.mirera.merchandise.domain.Users.Users;
+import com.mirera.merchandise.domain.users.Users;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

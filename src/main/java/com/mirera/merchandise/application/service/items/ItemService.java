@@ -2,8 +2,8 @@ package com.mirera.merchandise.application.service.items;
 
 import com.mirera.merchandise.application.port.inbound.items.ItemUserCase;
 import com.mirera.merchandise.application.port.outbound.items.ItemRepository;
-import com.mirera.merchandise.domain.Items.Items;
-import com.mirera.merchandise.domain.Items.ItemsDetail;
+import com.mirera.merchandise.domain.items.Items;
+import com.mirera.merchandise.domain.items.ItemsDetail;
 
 public class ItemService implements ItemUserCase {
   private final ItemRepository itemRepo;

@@ -1,6 +1,6 @@
-package com.mirera.merchandise.domain.Items;
+package com.mirera.merchandise.domain.items;
 
-import com.mirera.merchandise.domain.Categories.Categories;
+import com.mirera.merchandise.domain.categories.Categories;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

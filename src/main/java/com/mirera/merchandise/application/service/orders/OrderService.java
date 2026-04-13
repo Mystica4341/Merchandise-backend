@@ -2,9 +2,9 @@ package com.mirera.merchandise.application.service.orders;
 
 import com.mirera.merchandise.application.port.inbound.orders.OrderUseCase;
 import com.mirera.merchandise.application.port.outbound.orders.OrderRepository;
-import com.mirera.merchandise.domain.Orders.Orders;
+import com.mirera.merchandise.domain.orders.Orders;
 
-public class OrderService implements OrderUseCase{
+public class OrderService implements OrderUseCase {
   private final OrderRepository orderRepo;
 
   public OrderService(OrderRepository orderRepo) {
