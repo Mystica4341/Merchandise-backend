@@ -2,7 +2,7 @@ package com.mirera.merchandise.application.service.users;
 
 import com.mirera.merchandise.application.port.inbound.users.UserUseCase;
 import com.mirera.merchandise.application.port.outbound.users.UserRepository;
-import com.mirera.merchandise.domain.users.Users;
+import com.mirera.merchandise.domain.users.UsersEntity;
 
 public class UserService implements UserUseCase {
   private final UserRepository userRepo;
@@ -12,7 +12,7 @@ public class UserService implements UserUseCase {
   }
 
   @Override
-  public void createUser(Users user) {
+  public void createUser(UsersEntity user) {
     if (userRepo.existsByEmail(user.getEmail())) {
       throw new IllegalArgumentException("Email này đã được đăng ký");
     }
@@ -24,7 +24,7 @@ public class UserService implements UserUseCase {
 
   @Override
   public void registerUser(String email, String username, String password) {
-    Users user = new Users(email, username, password);
+    UsersEntity user = new UsersEntity(email, username, password);
     if (userRepo.existsByEmail(user.getEmail())) {
       throw new IllegalArgumentException("Email này đã được đăng ký");
     }
@@ -35,27 +35,31 @@ public class UserService implements UserUseCase {
   }
 
   @Override
-  public void updateUser(Users user) {
-    if (!userRepo.existsByEmail(user.getEmail())) {
+  public void updateUser(UsersEntity user) {
+    if (userRepo.findUserById(user.getId()) == null) {
       throw new IllegalArgumentException("User không tồn tại");
     }
     userRepo.saveUser(user);
   }
 
   @Override
-  public void deleteUser(Users user) {
-    if (!userRepo.existsByEmail(user.getEmail())) {
-      throw new IllegalArgumentException("User không tồn tại");
-    }
-    userRepo.deleteUser(user);
-  }
-
-  @Override
-  public void deleteUserById(int userId) {
-    Users user = userRepo.findUserById(userId);
+  public void softDeleteUser(int id) {
+    UsersEntity user = userRepo.findUserById(id);
     if (user == null) {
       throw new IllegalArgumentException("User không tồn tại");
     }
-    userRepo.deleteUserById(userId);
+    if (user.getStatus() == true) {
+      user.setStatus(false);
+    } else user.setStatus(true);
+    userRepo.saveUser(user);
+  }
+
+  @Override
+  public void deleteUserById(int id) {
+    UsersEntity user = userRepo.findUserById(id);
+    if (user == null) {
+      throw new IllegalArgumentException("User không tồn tại");
+    }
+    userRepo.deleteUserById(id);
   }
 }

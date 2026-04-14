@@ -1,14 +1,13 @@
 package com.mirera.merchandise.application.port.inbound.items;
 
-import com.mirera.merchandise.domain.items.Items;
-import com.mirera.merchandise.domain.items.ItemsDetail;
+import com.mirera.merchandise.domain.items.ItemsEntity;
 
 public interface ItemUserCase {
-  void createItem(Items item, ItemsDetail itemDetail);
+  void createItem(ItemsEntity item);
 
-  void updateItem(Items item, ItemsDetail itemDetail);
+  void updateItem(ItemsEntity item);
 
-  void deleteItem(Items item);
+  void softDeleteItem(int id);
 
-  void deleteItemById(int itemId);
+  void deleteItemById(int id);
 }

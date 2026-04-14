@@ -1,9 +1,9 @@
 package com.mirera.merchandise.application.port.inbound.orders;
 
-import com.mirera.merchandise.domain.orders.Orders;
+import com.mirera.merchandise.domain.orders.OrdersEntity;
 
 public interface OrderUseCase {
-  void createOrder(Orders order);
+  void createOrder(OrdersEntity order);
 
-  void updateOrder(Orders order);
+  void updateOrder(OrdersEntity order);
 }

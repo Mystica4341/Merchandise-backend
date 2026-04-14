@@ -2,8 +2,7 @@ package com.mirera.merchandise.application.service.items;
 
 import com.mirera.merchandise.application.port.inbound.items.ItemUserCase;
 import com.mirera.merchandise.application.port.outbound.items.ItemRepository;
-import com.mirera.merchandise.domain.items.Items;
-import com.mirera.merchandise.domain.items.ItemsDetail;
+import com.mirera.merchandise.domain.items.ItemsEntity;
 
 public class ItemService implements ItemUserCase {
   private final ItemRepository itemRepo;
@@ -13,37 +12,39 @@ public class ItemService implements ItemUserCase {
   }
 
   @Override
-  public void createItem(Items item, ItemsDetail itemDetail) {
+  public void createItem(ItemsEntity item) {
     if (itemRepo.existsByName(item.getItemName())) {
       throw new IllegalArgumentException("Tên sản phẩm đã tồn tại.");
     }
     itemRepo.saveItem(item);
-    itemRepo.saveItemDetails(itemDetail);
   }
 
   @Override
-  public void updateItem(Items item, ItemsDetail itemDetail) {
-    if (!itemRepo.existsByName(item.getItemName())) {
+  public void updateItem(ItemsEntity item) {
+    if (itemRepo.findItemById(item.getId()) == null) {
       throw new IllegalArgumentException("Sản phẩm không tồn tại.");
     }
     itemRepo.saveItem(item);
-    itemRepo.saveItemDetails(itemDetail);
   }
 
   @Override
-  public void deleteItem(Items item) {
-    if (!itemRepo.existsByName(item.getItemName())) {
-      throw new IllegalArgumentException("Sản phẩm không tồn tại.");
-    }
-    itemRepo.deleteItem(item);
-  }
-
-  @Override
-  public void deleteItemById(int itemId) {
-    Items item = itemRepo.findItemById(itemId);
+  public void softDeleteItem(int id) {
+    ItemsEntity item = itemRepo.findItemById(id);
     if (item == null) {
       throw new IllegalArgumentException("Sản phẩm không tồn tại.");
     }
-    itemRepo.deleteItemById(itemId);
+    if (item.getStatus() == true) {
+      item.setStatus(false);
+    } else item.setStatus(true);
+    itemRepo.saveItem(item);
+  }
+
+  @Override   
+  public void deleteItemById(int id) {
+    ItemsEntity item = itemRepo.findItemById(id);
+    if (item == null) {
+      throw new IllegalArgumentException("Sản phẩm không tồn tại.");
+    }
+    itemRepo.deleteItemById(id);
   }
 }

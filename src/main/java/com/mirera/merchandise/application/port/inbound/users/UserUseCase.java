@@ -1,15 +1,15 @@
 package com.mirera.merchandise.application.port.inbound.users;
 
-import com.mirera.merchandise.domain.users.Users;
+import com.mirera.merchandise.domain.users.UsersEntity;
 
 public interface UserUseCase {
-  void createUser(Users user);
+  void createUser(UsersEntity user);
 
   void registerUser(String email, String username, String password);
 
-  void updateUser(Users user);
+  void updateUser(UsersEntity user);
 
-  void deleteUser(Users user);
+  void softDeleteUser(int id);
 
-  void deleteUserById(int userId);
+  void deleteUserById(int id);
 }

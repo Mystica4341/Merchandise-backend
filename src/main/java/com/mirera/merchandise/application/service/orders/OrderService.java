@@ -2,7 +2,7 @@ package com.mirera.merchandise.application.service.orders;
 
 import com.mirera.merchandise.application.port.inbound.orders.OrderUseCase;
 import com.mirera.merchandise.application.port.outbound.orders.OrderRepository;
-import com.mirera.merchandise.domain.orders.Orders;
+import com.mirera.merchandise.domain.orders.OrdersEntity;
 
 public class OrderService implements OrderUseCase {
   private final OrderRepository orderRepo;
@@ -12,13 +12,13 @@ public class OrderService implements OrderUseCase {
   }
 
   @Override
-  public void createOrder(Orders order) {
+  public void createOrder(OrdersEntity order) {
     orderRepo.saveOrder(order);
   }
 
   @Override
-  public void updateOrder(Orders order) {
-    if (orderRepo.findOrderById(order.getOrderId()) == null) {
+  public void updateOrder(OrdersEntity order) {
+    if (orderRepo.findOrderById(order.getId()) == null) {
       throw new IllegalArgumentException("Đơn hàng không tồn tại.");
     }
     orderRepo.saveOrder(order);

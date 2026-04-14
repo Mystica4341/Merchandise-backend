@@ -1,20 +1,17 @@
 package com.mirera.merchandise.application.port.outbound.items;
 
-import com.mirera.merchandise.domain.items.Items;
-import com.mirera.merchandise.domain.items.ItemsDetail;
+import java.util.List;
+
+import com.mirera.merchandise.domain.items.ItemsEntity;
 
 public interface ItemRepository {
-  void findAll();
+  List<ItemsEntity> findAll();
 
-  Items findItemById(int itemId);
+  ItemsEntity findItemById(int itemId);
 
-  void saveItem(Items item);
+  void saveItem(ItemsEntity item);
 
-  void saveItemDetails(ItemsDetail itemDetail);
+  void deleteItemById(int id);
 
-  void deleteItem(Items item);
-
-  void deleteItemById(int itemId);
-
-  boolean existsByName(String name);
+  boolean existsByName(String itemName);
 }

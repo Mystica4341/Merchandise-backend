@@ -1,11 +1,13 @@
 package com.mirera.merchandise.application.port.outbound.orders;
 
-import com.mirera.merchandise.domain.orders.Orders;
+import java.util.List;
+
+import com.mirera.merchandise.domain.orders.OrdersEntity;
 
 public interface OrderRepository {
-  void findAll();
+  List<OrdersEntity> findAll();
 
-  Orders findOrderById(int orderId);
+  OrdersEntity findOrderById(int id);
 
-  void saveOrder(Orders order);
+  void saveOrder(OrdersEntity order);
 }

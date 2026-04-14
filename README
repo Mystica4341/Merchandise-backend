@@ -1,0 +1,8 @@
+//Start Docker
+docker compose up -d
+
+//Stop Docker
+docker compose down
+
+//Build and run the application
+./mvnw spring-boot:run

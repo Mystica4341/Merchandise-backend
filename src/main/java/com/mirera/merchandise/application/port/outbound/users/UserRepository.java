@@ -1,17 +1,19 @@
 package com.mirera.merchandise.application.port.outbound.users;
 
-import com.mirera.merchandise.domain.users.Users;
+import java.util.List;
+
+import com.mirera.merchandise.domain.users.UsersEntity;
 
 public interface UserRepository {
-  void findAll();
+  List<UsersEntity> findAll();
 
-  Users findUserById(int userId);
+  UsersEntity findUserById(int id);
 
-  void saveUser(Users user);
+  UsersEntity findByEmail(String email);
 
-  void deleteUser(Users user);
+  void saveUser(UsersEntity user);
 
-  void deleteUserById(int userId);
+  void deleteUserById(int id);
 
   boolean existsByEmail(String email);
 
