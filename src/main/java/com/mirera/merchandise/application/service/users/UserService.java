@@ -1,9 +1,12 @@
 package com.mirera.merchandise.application.service.users;
 
+import org.springframework.stereotype.Service;
+
 import com.mirera.merchandise.application.port.inbound.users.UserUseCase;
 import com.mirera.merchandise.application.port.outbound.users.UserRepository;
 import com.mirera.merchandise.domain.users.UsersEntity;
 
+@Service
 public class UserService implements UserUseCase {
   private final UserRepository userRepo;
 
@@ -62,4 +65,5 @@ public class UserService implements UserUseCase {
     }
     userRepo.deleteUserById(id);
   }
+
 }

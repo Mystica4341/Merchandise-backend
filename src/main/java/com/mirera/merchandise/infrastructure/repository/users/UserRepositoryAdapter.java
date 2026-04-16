@@ -2,9 +2,12 @@ package com.mirera.merchandise.infrastructure.repository.users;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.mirera.merchandise.application.port.outbound.users.UserRepository;
 import com.mirera.merchandise.domain.users.UsersEntity;
 
+@Repository
 public class UserRepositoryAdapter implements UserRepository {
   private final UserJpaRepository userJpaRepository;
 
@@ -46,5 +49,4 @@ public class UserRepositoryAdapter implements UserRepository {
   public boolean existsByUsername(String username) {
     return userJpaRepository.existsByUsername(username) ;
   }
-
 }
