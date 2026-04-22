@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.mirera.merchandise.domain.categories.CategoriesEntity;
 
 public interface CategoryJpaRepository extends JpaRepository<CategoriesEntity, Integer> {
-  boolean existsByName(String categoryName);
+  boolean existsByCategoryName(String categoryName);
   
-  CategoriesEntity findByName(String categoryName);
+  CategoriesEntity findByCategoryName(String categoryName);
 }

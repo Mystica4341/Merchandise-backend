@@ -33,7 +33,7 @@ public class ItemsRepositoryAdapter implements ItemRepository {
   }
 
   @Override
-  public boolean existsByName(String itemName) {
-    return itemJpaRepository.existsByName(itemName);
+  public boolean existsByItemName(String itemName) {
+    return itemJpaRepository.existsByItemName(itemName);
   }
 }

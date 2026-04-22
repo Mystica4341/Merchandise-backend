@@ -11,11 +11,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "categories")
 public class CategoriesEntity extends BaseEntity {
   @Column(name = "category_name", nullable = false, unique = true)

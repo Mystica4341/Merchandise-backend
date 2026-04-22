@@ -15,11 +15,13 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "items")
 public class ItemsEntity extends BaseEntity {
   @Column(name = "item_name", nullable = false, unique = true)

@@ -15,7 +15,7 @@ public class CategoryService implements CategoryUseCase {
   public void createCategory(String categoryName) {
     CategoriesEntity category = new CategoriesEntity();
     category.setCategoryName(categoryName);
-    if (categoryRepo.existsByName(categoryName)) {
+    if (categoryRepo.existsByCategoryName(categoryName)) {
       throw new IllegalArgumentException("Danh mục đã tồn tại.");
     }
     categoryRepo.saveCategory(category);

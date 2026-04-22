@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.mirera.merchandise.domain.items.ItemsEntity;
 
 public interface ItemJpaRepository extends JpaRepository<ItemsEntity, Integer> {
-  boolean existsByName(String itemName);
+  boolean existsByItemName(String itemName);
 }

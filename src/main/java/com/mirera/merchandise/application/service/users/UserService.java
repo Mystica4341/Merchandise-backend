@@ -1,8 +1,14 @@
 package com.mirera.merchandise.application.service.users;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mirera.merchandise.application.port.inbound.users.UserUseCase;
+import com.mirera.merchandise.application.port.inbound.users.dto.response.UserPageResponseDTO;
+import com.mirera.merchandise.application.port.inbound.users.dto.response.UserResponseDTO;
 import com.mirera.merchandise.application.port.outbound.users.UserRepository;
 import com.mirera.merchandise.domain.users.UsersEntity;
 
@@ -12,6 +18,31 @@ public class UserService implements UserUseCase {
 
   public UserService(UserRepository userRepo) {
     this.userRepo = userRepo;
+  }
+
+  @Override
+  public UserPageResponseDTO getAllUsers(Pageable pageable) {
+    Page<UsersEntity> response = userRepo.findAllUsers(pageable);
+    List<UserResponseDTO> user = response.getContent().stream()
+        .map(u -> new UserResponseDTO(
+            u.getId(),
+            u.getEmail(),
+            u.getUsername(),
+            u.getFull_name(),
+            u.getPhone_number(),
+            u.getAddress(),
+            u.getStatus(),
+            u.getCreatedAt(),
+            u.getUpdatedAt()
+        )).toList();
+
+    return new UserPageResponseDTO(
+      response.getNumber(),
+      response.getSize(),
+      response.getTotalPages(),
+      response.getTotalElements(),
+      user
+    );
   }
 
   @Override

@@ -13,5 +13,5 @@ public interface ItemRepository {
 
   void deleteItemById(int id);
 
-  boolean existsByName(String itemName);
+  boolean existsByItemName(String itemName);
 }

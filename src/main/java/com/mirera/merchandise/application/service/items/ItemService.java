@@ -13,7 +13,7 @@ public class ItemService implements ItemUserCase {
 
   @Override
   public void createItem(ItemsEntity item) {
-    if (itemRepo.existsByName(item.getItemName())) {
+    if (itemRepo.existsByItemName(item.getItemName())) {
       throw new IllegalArgumentException("Tên sản phẩm đã tồn tại.");
     }
     itemRepo.saveItem(item);

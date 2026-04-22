@@ -33,8 +33,8 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
   }
 
   @Override
-  public boolean existsByName(String categoryName) {
-    return categoryJpaRepository.existsByName(categoryName);
+  public boolean existsByCategoryName(String categoryName) {
+    return categoryJpaRepository.existsByCategoryName(categoryName);
   }
   
 }

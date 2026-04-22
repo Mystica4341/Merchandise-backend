@@ -13,5 +13,5 @@ public interface CategoryRepository{
 
   void deleteCategoryById(int id);
   
-  boolean existsByName(String categoryName);
+  boolean existsByCategoryName(String categoryName);
 }

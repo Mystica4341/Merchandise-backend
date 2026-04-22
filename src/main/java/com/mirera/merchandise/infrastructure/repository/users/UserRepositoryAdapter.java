@@ -1,7 +1,7 @@
 package com.mirera.merchandise.infrastructure.repository.users;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.mirera.merchandise.application.port.outbound.users.UserRepository;
@@ -16,8 +16,8 @@ public class UserRepositoryAdapter implements UserRepository {
   }
 
   @Override
-  public List<UsersEntity> findAll() {
-    return userJpaRepository.findAll();
+  public Page<UsersEntity> findAllUsers(Pageable pageable) {
+    return userJpaRepository.findAll(pageable);
   }
 
   @Override
