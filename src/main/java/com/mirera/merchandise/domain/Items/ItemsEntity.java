@@ -27,16 +27,16 @@ public class ItemsEntity extends BaseEntity {
   @Column(name = "item_name", nullable = false, unique = true)
   private String itemName;
 
-  @Column(name = "item_description", nullable = false)
+  @Column(name = "item_description")
   private String itemDescription;
 
-  @Column(name = "item_price", nullable = false)
+  @Column(name = "item_price")
   private double itemPrice;
 
   @Column(name = "item_image_url")
   private String itemImageUrl;
 
-  @Column(name = "stock_quantity", nullable = false)
+  @Column(name = "stock_quantity")
   private int stockQuantity;
 
   @Column(name = "item_color")

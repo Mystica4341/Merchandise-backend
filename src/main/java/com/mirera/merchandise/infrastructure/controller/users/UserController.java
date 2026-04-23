@@ -1,16 +1,22 @@
 package com.mirera.merchandise.infrastructure.controller.users;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mirera.merchandise.application.port.inbound.users.UserUseCase;
-import com.mirera.merchandise.application.port.inbound.users.dto.request.UserRegistrationRequest;
-import com.mirera.merchandise.application.port.inbound.users.dto.response.UserPageResponseDTO;
-import com.mirera.merchandise.domain.users.UsersEntity;
+import com.mirera.merchandise.application.port.inbound.users.dto.request.UserCreateReqDTO;
+import com.mirera.merchandise.application.port.inbound.users.dto.request.UserUpdateReqDTO;
+import com.mirera.merchandise.application.port.inbound.users.dto.response.UserPageResDTO;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 
 
 @RestController
@@ -23,7 +29,7 @@ public class UserController {
   }
 
   @GetMapping
-  public UserPageResponseDTO getAllUsers(Pageable pageable) {
+  public UserPageResDTO getAllUsers(Pageable pageable) {
     try {
       return userUseCase.getAllUsers(pageable);
     } catch (Exception e) {
@@ -32,27 +38,46 @@ public class UserController {
   }
 
   @PostMapping
-  public String createUser(@RequestBody UsersEntity user) {
+  @SecurityRequirement(name = "BearerAuth")
+  public String createUser(@RequestBody UserCreateReqDTO user) {
     try {
       userUseCase.createUser(user);
-      return "User created successfully";
+      return "Tạo user thành công";
     } catch (IllegalArgumentException e) {
       return "Error: " + e.getMessage();
     }
   }
 
-  @PostMapping("/register")
-  public String registerUser(@RequestBody UserRegistrationRequest request) {
+  @PutMapping("/{id}")
+  @SecurityRequirement(name = "BearerAuth")
+  public String updateUser(@PathVariable int id, @RequestBody UserUpdateReqDTO user) {
     try {
-      userUseCase.registerUser(request.email(), request.username(), request.password());
-      return "User registered successfully";
+      userUseCase.updateUser(id, user);
+      return "Cập nhật user thành công";
     } catch (IllegalArgumentException e) {
       return "Error: " + e.getMessage();
     }
   }
 
-  @GetMapping("/test")
-  public String testUser () {
-    return "User controller is working!";
+  @PutMapping("soft-delete/{id}")
+  @SecurityRequirement(name = "BearerAuth")
+  public String softDelete(@PathVariable int id) {
+    try {
+      userUseCase.softDeleteUser(id);
+      return "Tài khoản đã bị vô hiệu hóa";
+    } catch (IllegalArgumentException e) {
+      return "Error: " + e.getMessage();
+    }
+  }
+
+  @DeleteMapping("hard-delete/{id}")
+  @SecurityRequirement(name = "BearerAuth")
+  public String deleteUser(@PathVariable int id) {
+    try {
+      userUseCase.deleteUserById(id);
+      return "Xóa user thành công";
+    } catch (IllegalArgumentException e) {
+      return "Error: " + e.getMessage();
+    }
   }
 }

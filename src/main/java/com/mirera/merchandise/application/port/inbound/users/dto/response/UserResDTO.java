@@ -2,7 +2,7 @@ package com.mirera.merchandise.application.port.inbound.users.dto.response;
 
 import java.time.LocalDateTime;
 
-public record UserResponseDTO(
+public record UserResDTO(
   int id,
   String email,
   String username,

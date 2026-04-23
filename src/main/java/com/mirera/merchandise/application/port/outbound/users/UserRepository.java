@@ -14,6 +14,8 @@ public interface UserRepository {
 
   UsersEntity findByEmail(String email);
 
+  UsersEntity findByUsername(String username);
+
   void saveUser(UsersEntity user);
 
   void deleteUserById(int id);

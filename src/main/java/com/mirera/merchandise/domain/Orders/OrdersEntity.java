@@ -1,5 +1,6 @@
 package com.mirera.merchandise.domain.orders;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.mirera.merchandise.domain.entity.BaseEntity;
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Table(name = "orders")
 public class OrdersEntity extends BaseEntity {
   @Column(name = "order_date", nullable = false, unique = true)
-  private String orderDate;
+  private LocalDateTime orderDate = LocalDateTime.now();
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", nullable = false)

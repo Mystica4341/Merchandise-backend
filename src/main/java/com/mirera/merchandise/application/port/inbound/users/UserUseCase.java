@@ -3,18 +3,17 @@ package com.mirera.merchandise.application.port.inbound.users;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Pageable;
 
-import com.mirera.merchandise.application.port.inbound.users.dto.response.UserPageResponseDTO;
-import com.mirera.merchandise.domain.users.UsersEntity;
+import com.mirera.merchandise.application.port.inbound.users.dto.request.UserCreateReqDTO;
+import com.mirera.merchandise.application.port.inbound.users.dto.request.UserUpdateReqDTO;
+import com.mirera.merchandise.application.port.inbound.users.dto.response.UserPageResDTO;
 
 @Configuration
 public interface UserUseCase {
-  UserPageResponseDTO getAllUsers(Pageable pageable);
+  UserPageResDTO getAllUsers(Pageable pageable);
 
-  void createUser(UsersEntity user);
+  void createUser(UserCreateReqDTO user);
 
-  void registerUser(String email, String username, String password);
-
-  void updateUser(UsersEntity user);
+  void updateUser(int id, UserUpdateReqDTO user);
 
   void softDeleteUser(int id);
 

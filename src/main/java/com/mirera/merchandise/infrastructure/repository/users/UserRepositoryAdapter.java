@@ -31,6 +31,11 @@ public class UserRepositoryAdapter implements UserRepository {
   }
 
   @Override
+  public UsersEntity findByUsername(String username) {
+    return userJpaRepository.findByUsername(username).orElse(null);
+  }
+
+  @Override
   public void saveUser(UsersEntity user) {
     userJpaRepository.save(user);
   }

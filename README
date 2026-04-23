@@ -4,5 +4,8 @@ docker compose up -d
 //Stop Docker
 docker compose down
 
+//Check database tables
+docker compose exec db psql -U postgres -d merchandise_db -c "\dt"
+
 //Build and run the application
 .\mvnw.cmd spring-boot:run

@@ -21,33 +21,46 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "users")
 public class UsersEntity extends BaseEntity {
-  @Column(name = "full_name", nullable = true)
+  @Column(name = "full_name")
   private String full_name;
 
-  @Column(name = "phone_number", nullable = true, unique = true)
+  @Column(name = "phone_number", unique = true)
   private String phone_number;
 
-  @Column(name = "address", nullable = true)
+  @Column(name = "address")
   private String address;
 
-  @Column(name = "username", nullable = true, unique = true)
+  @Column(name = "username", nullable = false, unique = true)
   private String username;
 
-  @Column(name = "email", nullable = true, unique = true)
+  @Column(name = "email", nullable = false, unique = true)
   private String email;
 
-  @Column(name = "password", nullable = true)
+  @Column(name = "password", nullable = false)
   private String password;
 
   @OneToMany(mappedBy = "user")
   private Set<OrdersEntity> orders = new HashSet<>();
   
-  @Column(name = "status", nullable = true)
+  @Column(name = "status")
   private Boolean status = true;
+
+  @Column(name = "role", nullable = false)
+  private String role = "USER";
   
   public UsersEntity(String email, String username, String password) {
     this.email = email;
     this.username = username;
     this.password = password;
+  }
+
+  public UsersEntity(String email, String username, String full_name, String password, String role, String address, String phone_number) {
+    this.email = email;
+    this.username = username;
+    this.full_name = full_name;
+    this.password = password;
+    this.role = role;
+    this.address = address;
+    this.phone_number = phone_number;
   }
 }
