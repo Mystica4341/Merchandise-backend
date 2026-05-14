@@ -53,6 +53,25 @@ public class UserService implements UserUseCase {
   }
 
   @Override
+  public UserResDTO getUserById(int id) {
+    existsUserById(id);
+
+    UsersEntity user = userRepo.findUserById(id);
+
+    return new UserResDTO(
+      user.getId(),
+      user.getEmail(),
+      user.getUsername(),
+      user.getFull_name(),
+      user.getPhone_number(),
+      user.getAddress(),
+      user.getStatus(),
+      user.getCreatedAt(),
+      user.getUpdatedAt()
+    );
+  }
+
+  @Override
   public void createUser(UserCreateReqDTO user) {
     existsByEmail(user.email());
     existsByUsername(user.username());
@@ -71,11 +90,10 @@ public class UserService implements UserUseCase {
 
   @Override
   public void updateUser(int id, UserUpdateReqDTO user) {
-    existsUserById(id);
+    UsersEntity existingUser = existsUserById(id);
 
     validatePassword(user.password());
 
-    UsersEntity existingUser = userRepo.findUserById(id);
     existingUser.setEmail(user.email());
     existingUser.setUsername(user.username());
     existingUser.setFull_name(user.full_name());
@@ -89,9 +107,7 @@ public class UserService implements UserUseCase {
 
   @Override
   public void softDeleteUser(int id) {
-    existsUserById(id);
-
-    UsersEntity user = userRepo.findUserById(id);
+    UsersEntity user = existsUserById(id);
 
     if (user.getStatus() == true) {
       user.setStatus(false);
@@ -118,10 +134,12 @@ public class UserService implements UserUseCase {
     }
   }
 
-  public void existsUserById(int id) {
-    if (userRepo.findUserById(id) == null) {
+  public UsersEntity existsUserById(int id) {
+    UsersEntity user = userRepo.findUserById(id);
+    if (user == null) {
       throw new IllegalArgumentException("User không tồn tại");
     }
+    return user;
   }
 
   public void validatePassword(String password) {

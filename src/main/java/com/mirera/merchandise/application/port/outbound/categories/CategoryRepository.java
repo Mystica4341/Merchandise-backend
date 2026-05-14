@@ -1,11 +1,12 @@
 package com.mirera.merchandise.application.port.outbound.categories;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.mirera.merchandise.domain.categories.CategoriesEntity;
 
 public interface CategoryRepository{
-  List<CategoriesEntity> findAll();
+  Page<CategoriesEntity> findAllCategories(Pageable pageable);
 
   CategoriesEntity findCategoryById(int id);
 

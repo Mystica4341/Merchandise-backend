@@ -14,6 +14,7 @@ import com.mirera.merchandise.application.port.inbound.users.UserUseCase;
 import com.mirera.merchandise.application.port.inbound.users.dto.request.UserCreateReqDTO;
 import com.mirera.merchandise.application.port.inbound.users.dto.request.UserUpdateReqDTO;
 import com.mirera.merchandise.application.port.inbound.users.dto.response.UserPageResDTO;
+import com.mirera.merchandise.application.port.inbound.users.dto.response.UserResDTO;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
@@ -34,6 +35,15 @@ public class UserController {
       return userUseCase.getAllUsers(pageable);
     } catch (Exception e) {
       throw new RuntimeException("Error fetching users: " + e.getMessage());
+    }
+  }
+
+  @GetMapping("/{id}")
+  public UserResDTO getUserById(@PathVariable int id) {
+    try {
+      return userUseCase.getUserById(id);
+    } catch (IllegalArgumentException e) {
+      throw new RuntimeException("Error fetching user: " + e.getMessage());
     }
   }
 

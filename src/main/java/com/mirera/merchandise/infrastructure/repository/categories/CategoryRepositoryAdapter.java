@@ -1,10 +1,13 @@
 package com.mirera.merchandise.infrastructure.repository.categories;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.mirera.merchandise.application.port.outbound.categories.CategoryRepository;
 import com.mirera.merchandise.domain.categories.CategoriesEntity;
 
+@Repository
 public class CategoryRepositoryAdapter implements CategoryRepository {
   private final CategoryJpaRepository categoryJpaRepository;
 
@@ -13,8 +16,8 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
   }
 
   @Override
-  public List<CategoriesEntity> findAll() {
-    return categoryJpaRepository.findAll();
+  public Page<CategoriesEntity> findAllCategories(Pageable pageable) {
+    return categoryJpaRepository.findAll(pageable);
   }
 
   @Override
