@@ -15,6 +15,8 @@ import com.mirera.merchandise.application.port.inbound.categories.dto.response.C
 import com.mirera.merchandise.application.port.inbound.categories.dto.response.CategoryResDTO;
 import com.mirera.merchandise.domain.categories.CategoriesEntity;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 
 
 @RestController
@@ -27,7 +29,7 @@ public class CategoryController {
   }
 
   @GetMapping
-  public CategoryPageResDTO getAllCategories(@RequestParam Pageable pageable) {
+  public CategoryPageResDTO getAllCategories(Pageable pageable) {
     try {
       return categoryUseCase.getAllCategories(pageable);
     } catch (Exception e) {
@@ -45,6 +47,7 @@ public class CategoryController {
   }
 
   @PostMapping
+  @SecurityRequirement(name = "BearerAuth")
   public String createCategory(@RequestParam String categoryName) {
     try {
       categoryUseCase.createCategory(categoryName);
@@ -55,6 +58,7 @@ public class CategoryController {
   }
 
   @PutMapping("/{id}")
+  @SecurityRequirement(name = "BearerAuth")
   public String updateCategory(@PathVariable int id, @RequestParam CategoriesEntity category) {
     try {
       categoryUseCase.updateCategory(id, category);
@@ -65,6 +69,7 @@ public class CategoryController {
   }
 
   @PutMapping("/soft-delete/{id}")
+  @SecurityRequirement(name = "BearerAuth")
   public String softDeleteCategory(@PathVariable int id) {
     try {
       categoryUseCase.softDeleteCategory(id);
@@ -75,6 +80,7 @@ public class CategoryController {
   }
 
   @DeleteMapping("/hard-delete/{id}")
+  @SecurityRequirement(name = "BearerAuth")
   public String deleteCategory(@PathVariable int id) {
     try {
       categoryUseCase.deleteCategoryById(id);

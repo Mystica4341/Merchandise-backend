@@ -1,10 +1,13 @@
 package com.mirera.merchandise.infrastructure.repository.items;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.mirera.merchandise.application.port.outbound.items.ItemRepository;
 import com.mirera.merchandise.domain.items.ItemsEntity;
 
+@Repository
 public class ItemsRepositoryAdapter implements ItemRepository {
   private final ItemJpaRepository itemJpaRepository;
 
@@ -13,8 +16,8 @@ public class ItemsRepositoryAdapter implements ItemRepository {
   }
 
   @Override
-  public List<ItemsEntity> findAll() {
-    return itemJpaRepository.findAll();
+  public Page<ItemsEntity> findAllItems(Pageable pageable) {
+    return itemJpaRepository.findAll(pageable);
   }
 
   @Override

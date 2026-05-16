@@ -24,11 +24,18 @@ public class CategoryService implements CategoryUseCase {
   public CategoryPageResDTO getAllCategories(Pageable pageable) {
     Page<CategoriesEntity> response = categoryRepo.findAllCategories(pageable);
 
+    if (response == null || response.getContent().isEmpty()) {
+      throw new IllegalArgumentException("Không có danh mục nào.");
+    }
+
     List<CategoryResDTO>  category = response.getContent().stream()
       .map(c -> new CategoryResDTO(
         c.getId(),
         c.getCategoryName(),
-        c.getDescription()
+        c.getDescription(),
+        c.getStatus(),
+        c.getCreatedAt(),
+        c.getUpdatedAt()
       ))
       .toList();
 
@@ -48,7 +55,10 @@ public class CategoryService implements CategoryUseCase {
     return new CategoryResDTO(
       category.getId(),
       category.getCategoryName(),
-      category.getDescription()
+      category.getDescription(),
+      category.getStatus(),
+      category.getCreatedAt(),
+      category.getUpdatedAt()
     );
   }
 

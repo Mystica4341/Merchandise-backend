@@ -30,6 +30,10 @@ public class UserService implements UserUseCase {
   public UserPageResDTO getAllUsers(Pageable pageable) {
     Page<UsersEntity> response = userRepo.findAllUsers(pageable);
 
+    if (response == null || response.getContent().isEmpty()) {
+      throw new IllegalArgumentException("Không có người dùng nào.");
+    }
+
     List<UserResDTO> user = response.getContent().stream()
         .map(u -> new UserResDTO(
             u.getId(),
@@ -54,9 +58,7 @@ public class UserService implements UserUseCase {
 
   @Override
   public UserResDTO getUserById(int id) {
-    existsUserById(id);
-
-    UsersEntity user = userRepo.findUserById(id);
+    UsersEntity user = existsUserById(id);
 
     return new UserResDTO(
       user.getId(),
@@ -73,8 +75,8 @@ public class UserService implements UserUseCase {
 
   @Override
   public void createUser(UserCreateReqDTO user) {
-    existsByEmail(user.email());
-    existsByUsername(user.username());
+    isExistsByEmail(user.email());
+    isExistsByUsername(user.username());
     validatePassword(user.password());
 
     userRepo.saveUser(new UsersEntity(
@@ -122,13 +124,13 @@ public class UserService implements UserUseCase {
     userRepo.deleteUserById(id);
   }
 
-  public void existsByEmail(String email) {
+  public void isExistsByEmail(String email) {
     if (userRepo.existsByEmail(email)) {
       throw new IllegalArgumentException("Email này đã được đăng ký");
     }
   }
 
-  public void existsByUsername(String username) {
+  public void isExistsByUsername(String username) {
     if (userRepo.existsByUsername(username)) {
       throw new IllegalArgumentException("Username này đã được sử dụng");
     }
@@ -137,7 +139,7 @@ public class UserService implements UserUseCase {
   public UsersEntity existsUserById(int id) {
     UsersEntity user = userRepo.findUserById(id);
     if (user == null) {
-      throw new IllegalArgumentException("User không tồn tại");
+      throw new IllegalArgumentException("Người dùng không tồn tại");
     }
     return user;
   }

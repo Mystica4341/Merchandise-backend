@@ -30,5 +30,5 @@ public class CategoriesEntity extends BaseEntity {
   private Set<ItemsEntity> items = new HashSet<>();
 
   @Column(name = "status", nullable = false)
-  private Boolean status;
+  private Boolean status = true;
 }

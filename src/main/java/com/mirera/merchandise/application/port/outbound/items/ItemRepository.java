@@ -1,13 +1,15 @@
 package com.mirera.merchandise.application.port.outbound.items;
 
-import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.mirera.merchandise.domain.items.ItemsEntity;
 
 public interface ItemRepository {
-  List<ItemsEntity> findAll();
+  Page<ItemsEntity> findAllItems(Pageable pageable);
 
-  ItemsEntity findItemById(int itemId);
+  ItemsEntity findItemById(int id);
 
   void saveItem(ItemsEntity item);
 

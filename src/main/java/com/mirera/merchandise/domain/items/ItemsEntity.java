@@ -56,5 +56,5 @@ public class ItemsEntity extends BaseEntity {
   private Set<OrderItemsEntity> orderItems = new HashSet<>();
 
   @Column(name = "status", nullable = false)
-  private Boolean status;
+  private Boolean status = true;
 }
