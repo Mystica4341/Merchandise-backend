@@ -1,5 +1,6 @@
 package com.mirera.merchandise.domain.items;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class ItemsEntity extends BaseEntity {
   private String itemDescription;
 
   @Column(name = "item_price")
-  private double itemPrice;
+  private BigDecimal itemPrice;
 
   @Column(name = "item_image_url")
   private String itemImageUrl;

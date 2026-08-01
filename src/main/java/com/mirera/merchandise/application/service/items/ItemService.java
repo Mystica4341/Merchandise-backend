@@ -52,10 +52,6 @@ public class ItemService implements ItemUseCase {
   public ItemResDTO getItemById(int id) {
     ItemsEntity item = itemRepo.findItemById(id);
 
-    if (item == null) {
-      throw new IllegalArgumentException("Sản phẩm không tồn tại.");
-    }
-
     return toResponse(item);
   }
 
@@ -82,9 +78,6 @@ public class ItemService implements ItemUseCase {
   @Override
   public void updateItem(ItemReqDTO request, int id) {
     ItemsEntity item = existsItemById(id);
-    if (item == null) {
-      throw new IllegalArgumentException("Sản phẩm không tồn tại.");
-    }
 
     item.setItemName(request.itemName());
     item.setItemDescription(request.itemDescription());

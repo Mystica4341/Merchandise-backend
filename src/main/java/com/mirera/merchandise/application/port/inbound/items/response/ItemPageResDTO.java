@@ -7,5 +7,5 @@ public record ItemPageResDTO(
   int size,
   int total_pages,
   long total_elements,
-  List<ItemResDTO> categories
+  List<ItemResDTO> items
 ) {}

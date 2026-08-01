@@ -1,5 +1,7 @@
 package com.mirera.merchandise.domain.orders;
 
+import java.math.BigDecimal;
+
 import com.mirera.merchandise.domain.entity.BaseEntity;
 import com.mirera.merchandise.domain.items.ItemsEntity;
 
@@ -33,5 +35,5 @@ public class OrderItemsEntity extends BaseEntity {
   private int quantity;
 
   @Column(name = "total_price", nullable = false)
-  private double totalPrice;
+  private BigDecimal totalPrice;
 }

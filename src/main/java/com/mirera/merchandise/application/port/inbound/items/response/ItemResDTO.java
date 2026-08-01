@@ -1,5 +1,6 @@
 package com.mirera.merchandise.application.port.inbound.items.response;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public record ItemResDTO(
     int id,
     String item_name,
     String item_description,
-    double item_price,
+    BigDecimal item_price,
     String item_image_url,
     int stock_quantity,
     String item_color,

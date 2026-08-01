@@ -1,10 +1,14 @@
 package com.mirera.merchandise.infrastructure.repository.orders;
 
-import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.mirera.merchandise.application.port.outbound.orders.OrderRepository;
 import com.mirera.merchandise.domain.orders.OrdersEntity;
 
+@Repository
 public class OrderRepositoryAdapter implements OrderRepository {
   private final OrderJpaRepository orderJpaRepository;
 
@@ -13,8 +17,8 @@ public class OrderRepositoryAdapter implements OrderRepository {
   }
 
   @Override
-  public List<OrdersEntity> findAll() {
-    return orderJpaRepository.findAll();
+  public Page<OrdersEntity> findAllOrders(Pageable pageable) {
+    return orderJpaRepository.findAll(pageable);
   }
 
   @Override
@@ -25,5 +29,10 @@ public class OrderRepositoryAdapter implements OrderRepository {
   @Override
   public void saveOrder(OrdersEntity order) {
     orderJpaRepository.save(order);
+  }
+
+  @Override
+  public void deleteOrderById(int id) {
+    orderJpaRepository.deleteById(id);
   }
 }
